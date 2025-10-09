@@ -50,26 +50,47 @@ public void asignarMembresia(Scanner sc, Gimnasio gimnasio){
                 String tipoMembresia="";
                 switch(opcion){
                     case 1:
-                        tipoMembresia=("La membresia adquirida es la basica");
+                        tipoMembresia=(" La membresia adquirida es la basica");
 
                         break;
                     case 2:
-                        tipoMembresia=("La membresia adquirida es la premium");
+                        tipoMembresia=(" La membresia adquirida es la premium");
 
                         break;
                     case 3:
-                        tipoMembresia=("La membresia adquirida es la VIP");
+                        tipoMembresia=(" La membresia adquirida es la VIP");
                         break;
                     default:
                         System.out.println("opcion invalida");
                         return;
                 }
                 u.setMembresias(tipoMembresia);
-                System.out.println("Membresia asignada correctamente"+tipoMembresia);
+                System.out.println("Membresia asignada correctamente:"+tipoMembresia);
                 break;
             }
         }if(!encontrado){
             System.out.println("Usuario no encontrado");
+    }
+
+}
+public static void  validarIngreso(Scanner sc, Gimnasio gimnasio) {
+        System.out.println("Ingrese la identificacion del usuario");
+        int identificacion=sc.nextInt();
+        sc.nextLine();
+        boolean encontrado=false;
+        for(Usuarios u:gimnasio.getListaUsuarios()){
+            if(u.getIdentificacion()==identificacion){
+                encontrado=true;
+                System.out.println("Usuario encontrado:");
+                System.out.println("Nombre: " + u.getNombre());
+                System.out.println("ID: " + u.getIdentificacion());
+                System.out.println("Edad: " + u.getEdad());
+                System.out.println("Teléfono: " + u.getTelefono());
+                System.out.println("Membresía: " + u.getMembresias());
+                 break;
+            }
+            }if(!encontrado){
+        System.out.println ("Usuario no encontrado");
     }
 
 }

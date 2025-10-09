@@ -3,6 +3,7 @@ package proyectoFinal;
 import proyectoFinal.clases.Administrador;
 import proyectoFinal.clases.Gimnasio;
 import proyectoFinal.clases.Recepcionista;
+import proyectoFinal.clases.Usuarios;
 
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class Main {
             System.out.println("2. Marca esta opcion si eres adminstrador ");
             System.out.println("3. Si quieres conocer informacion sobre nuestras membresias");
             System.out.println("4. Marca esta opcion si eres usuario");
-            System.out.println("5. Si quieres salir del menu");
+            System.out.println("0. Si quieres salir del menu");
             opcion = sc.nextInt();
             sc.nextLine();
             //a
@@ -43,7 +44,7 @@ public class Main {
             }
 
 
-        } while (opcion != 5);
+        } while (opcion != 0);
     }
     public static Gimnasio inicializarDatos() {
         Gimnasio gimnasio = new Gimnasio();
@@ -51,6 +52,8 @@ public class Main {
         gimnasio.getListaRecepcionistas().add(recepcionista);
         Administrador administrador = new Administrador("Admin", 12345);
         gimnasio.setAdministrador(administrador);
+        Usuarios usuario= new Usuarios("Pedro",100, 18,30549271,"VIP");
+        gimnasio.getListaUsuarios().add(usuario);
         return gimnasio;
     }
 
@@ -107,7 +110,10 @@ public class Main {
                 case 2:
                     recepcionista.asignarMembresia(sc, gym);
                     break;
-
+                case 4:
+                    recepcionista.validarIngreso(sc, gym);
+                    ;
+                    break;
 
             }
 

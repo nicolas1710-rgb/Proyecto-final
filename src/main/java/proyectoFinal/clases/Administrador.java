@@ -15,6 +15,7 @@ public class Administrador {
     public void setUsuario(String usuario) {this.usuario = usuario;}
     public int getContraseña() {return contraseña;}
     public void setContraseña(int contraseña) {this.contraseña = contraseña;}
+
     public void RegistrarEntrenador (Scanner sc, Gimnasio gimnasio){
         Entrenador entrenador= new Entrenador();
         System.out.println("Ingrese el nombre del entrenador");
