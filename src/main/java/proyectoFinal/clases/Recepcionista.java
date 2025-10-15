@@ -1,21 +1,28 @@
 package proyectoFinal.clases;
 
 import javax.swing.plaf.multi.MultiPopupMenuUI;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.List;
+import java.time.LocalDate;
 
 public class Recepcionista {
     private String usuario;
-    private int contraseña;
+    private int contrasena;
     private Gimnasio gimnasio;
+    private List<String> asistencias;
     public Recepcionista(){}
-    public Recepcionista(String usuario , int contraseña){
+    public Recepcionista(String usuario , int contrasena){
         this.usuario = usuario;
-        this.contraseña= contraseña;
+        this.contrasena= contrasena;
+        this.asistencias = new ArrayList<>();
     }
     public String getUsuario() {return usuario;}
     public void setUsuario(String usuario) {this.usuario = usuario;}
-    public int getContraseña(){ return contraseña;}
-    public void setContraeña(int contraseña){ this.contraseña=contraseña;}
+    public int getContrasena(){ return contrasena;}
+    public void setContraena(int contrasena){ this.contrasena=contrasena;}
+
+
 
     public void RegistrarUsuario (Scanner sc, Gimnasio gimnasio){
         Usuarios user= new Usuarios();
@@ -73,6 +80,36 @@ public void asignarMembresia(Scanner sc, Gimnasio gimnasio){
     }
 
 }
+public void registrarAsistencia(Scanner sc, Gimnasio gym) {
+    System.out.println("Ingrese el nombre del usuario: ");
+    String nombreUsuario = sc.nextLine();
+
+    System.out.println("Seleccione la clase grupal: ");
+    for(TiposdeClases tipo : TiposdeClases.values()){
+        System.out.println("- " + tipo);
+    }
+    System.out.println("Clase elegida : ");
+    String claseSeleccionda = sc.nextLine().toUpperCase();
+    try {
+        TiposdeClases tipoClase = TiposdeClases.valueOf(claseSeleccionda);
+        String registro = nombreUsuario + " - " + tipoClase + " - " + LocalDate.now();
+        asistencias.add(registro);
+        System.out.println("Asistencia registrada correctamente: " + registro);
+    }catch (IllegalArgumentException e){
+        System.out.println("Clase no valida. Intente nuevamente");
+    }
+}
+public void mostrarAsistencias() {
+    if(asistencias.isEmpty()) {
+        System.out.println("No hay asistencias registradas todavia.");
+    }else {
+        System.out.println("Asistencias registradas por " + usuario);
+        for (String registro : asistencias) {
+            System.out.println(registro);
+        }
+    }
+}
+
 public static void  validarIngreso(Scanner sc, Gimnasio gimnasio) {
         System.out.println("Ingrese la identificacion del usuario");
         int identificacion=sc.nextInt();

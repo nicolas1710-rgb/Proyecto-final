@@ -4,7 +4,7 @@ public class Entrenador extends Usuarios {
         private String especialidad;
         private double salario;
         public Entrenador(){}
-        public Entrenador(String especialidad, double salario,String nombre, int identificacion, int edad, int telefono) {
+        public Entrenador(String especialidad, double salario,String nombre, long identificacion, int edad, long telefono) {
             super(nombre, identificacion, edad, telefono, null);
             this.especialidad = especialidad;
             this.salario=salario;

@@ -1,15 +1,31 @@
 package proyectoFinal.clases;
+import java.time.LocalDate;
 
 public class Membresias {
-    private String membresiaBasica;
-    private String membresiaPremium;
-    private String membresiaVIP;
+    private TipoMembresia tipo;
+    private DuracionMembresia duracion;
+    private double costo;
+    private LocalDate fechaInicio;
+    private LocalDate fechaVencimiento;
+    private boolean activa;
 
-    public String getMembresiaBasica() {return membresiaBasica;}
-    public void setMembresiaBasica(String membresiaBasica) {this.membresiaBasica = membresiaBasica;}
-    public String getMembresiaPremium() {return membresiaPremium;}
-    public void setMembresiaPremium(String membresiaPremium) {this.membresiaPremium = membresiaPremium;}
-    public String getMembresiaVIP() {return membresiaVIP;}
-    public void setMembresiaVIP(String membresiaVIP) {this.membresiaVIP = membresiaVIP;}
+    public Membresias(TipoMembresia tipo, DuracionMembresia duracion, LocalDate fechaInicio) {
+        this.tipo = tipo;
+        this.duracion = duracion;
+        this.costo = tipo.getPrecio(duracion); //  precio automático pene
+        this.fechaInicio = fechaInicio;
+        this.fechaVencimiento = fechaInicio.plusDays(duracion.getDias());
+        this.activa = verificarEstado();
+    }
 
+    public boolean verificarEstado() {
+        return !LocalDate.now().isAfter(fechaVencimiento);
+    }
+
+    @Override
+    public String toString() {
+        return tipo + " - " + duracion + " | $" + costo +
+                " | Estado: " + (activa ? "Activa" : "Vencida") +
+                "\nDesde: " + fechaInicio + " hasta: " + fechaVencimiento;
+    }
 }
